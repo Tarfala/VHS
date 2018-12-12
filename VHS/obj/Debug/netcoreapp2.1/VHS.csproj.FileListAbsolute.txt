@@ -1,0 +1,11 @@
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\bin\Debug\netcoreapp2.1\VHS.deps.json
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\bin\Debug\netcoreapp2.1\VHS.runtimeconfig.json
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\bin\Debug\netcoreapp2.1\VHS.runtimeconfig.dev.json
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\bin\Debug\netcoreapp2.1\VHS.dll
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\bin\Debug\netcoreapp2.1\VHS.pdb
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.csprojAssemblyReference.cache
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.csproj.CoreCompileInputs.cache
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.AssemblyInfoInputs.cache
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.AssemblyInfo.cs
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.dll
+C:\Users\Risberg\Desktop\Projekt Week 3\VHS\obj\Debug\netcoreapp2.1\VHS.pdb
