@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace VHS
 {
@@ -9,6 +10,7 @@ namespace VHS
     {
         static void Main(string[] args)
         {
+            Console.Title = "VHS MADNESS";
             var vhsperson = new VHSPERSON(); // Creates the class
             string something = File.ReadAllText(@"C:\Users\Risberg\Desktop\Projekt Week 3\ScoreBoard\ScoreBoard.txt");
             int value = IntroPage();
@@ -190,13 +192,14 @@ namespace VHS
 
         private static void EndGame(VHSPERSON vhsperson, string something)
         {
+            Console.Clear();
             Console.WriteLine("Its now friday evening.. and the boss calls you");
             Console.ReadKey();
             Console.WriteLine("To get a promotion you'll need: ");
-            Console.WriteLine("Health > 2"); 
-            Console.WriteLine("Skill > 3");
-            Console.WriteLine("BossLikes > 4");
-            Console.WriteLine("VHSRepaired > 10");
+            Console.WriteLine("Health > 1"); 
+            Console.WriteLine("Skill > 2");
+            Console.WriteLine("BossLikes > 2");
+            Console.WriteLine("VHSRepaired > 5");
             Console.WriteLine("CustomerHappines > 20");
             Console.ReadKey();
             Console.WriteLine();
@@ -213,7 +216,7 @@ namespace VHS
 
         private static void PromotedOrnot(VHSPERSON vhsperson)
         {
-            if (vhsperson.Health > 2 && vhsperson.Skill > 2 && vhsperson.BossLikes > 4 && vhsperson.VHSRepaired > 10 && vhsperson.CustomerHappines > 20)
+            if (vhsperson.Health > 1 && vhsperson.Skill > 2 && vhsperson.BossLikes > 2 && vhsperson.VHSRepaired > 5 && vhsperson.CustomerHappines > 20)
             {
                 Promoted(vhsperson);
             }
@@ -227,38 +230,130 @@ namespace VHS
         private static void Fired(VHSPERSON vhsperson)
         {
             Console.Clear();
-            Console.Write("<BOSS>: ");
-            Console.WriteLine(vhsperson.Name + "!!!!!");
-            Console.WriteLine("You");
+            string[] you = new string[]
+            {
+                  @"                                       ",
+                  @"            ██╗   ██╗ ██████╗ ██╗   ██╗",
+                  @"            ╚██╗ ██╔╝██╔═══██╗██║   ██║",
+                  @"             ╚████╔╝ ██║   ██║██║   ██║",
+                  @"              ╚██╔╝  ██║   ██║██║   ██║",
+                  @"               ██║   ╚██████╔╝╚██████╔╝",
+                  @"               ╚═╝    ╚═════╝  ╚═════╝"
+
+            };
+
+            string[] are = new string[]
+            {
+                @"                                         ",
+                @"                 █████╗ ██████╗ ███████╗ ",
+                @"                ██╔══██╗██╔══██╗██╔════╝ ",
+                @"                ███████║██████╔╝█████╗   ",
+                @"                ██╔══██║██╔══██╗██╔══╝   ",
+                @"                ██║  ██║██║  ██║███████╗ ",
+                @"                ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ "
+
+            };
+
+            string[] fired = new string[]
+            {
+                @"                                                      ",
+                @"                  ███████╗██╗██████╗ ███████╗██████╗  ",
+                @"                  ██╔════╝██║██╔══██╗██╔════╝██╔══██╗ ",
+                @"                  █████╗  ██║██████╔╝█████╗  ██║  ██║ ",
+                @"                  ██╔══╝  ██║██╔══██╗██╔══╝  ██║  ██║ ",
+                @"                  ██║     ██║██║  ██║███████╗██████╔╝ ",
+                @"                  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═════╝  "
+
+            };
+
+
+            foreach (var item in you)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadKey();
 
-            Console.WriteLine("are");
+            foreach (var x in are)
+            {
+                Console.WriteLine(x);
+            }
+
             Console.ReadKey();
 
-            Console.WriteLine("FIRED!!!!!");
-            Console.ReadKey();
+            foreach (var y in fired)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(y);
+                Thread.Sleep(100);
+                Console.ResetColor();
+            }
 
-            
+
             Console.ReadKey();
+            Environment.Exit(1);
         }
 
         private static void Promoted(VHSPERSON vhsperson)
         {
             Console.Clear();
-            Console.Write("<BOSS>: ");
-            Console.WriteLine(vhsperson.Name + "!!!!!");
-            Console.WriteLine(vhsperson.Name);
-            Console.WriteLine("You");
+            string[] you = new string[]
+            {
+                  @"                                      ",
+                  @"            ██╗   ██╗ ██████╗ ██╗   ██╗",
+                  @"            ╚██╗ ██╔╝██╔═══██╗██║   ██║",
+                  @"             ╚████╔╝ ██║   ██║██║   ██║",
+                  @"              ╚██╔╝  ██║   ██║██║   ██║",
+                  @"               ██║   ╚██████╔╝╚██████╔╝",
+                  @"               ╚═╝    ╚═════╝  ╚═════╝"
+
+            };
+
+            string[] are = new string[]
+            {
+                @"                                         ",
+                @"                 █████╗ ██████╗ ███████╗ ",
+                @"                ██╔══██╗██╔══██╗██╔════╝ ",
+                @"                ███████║██████╔╝█████╗   ",
+                @"                ██╔══██║██╔══██╗██╔══╝   ",
+                @"                ██║  ██║██║  ██║███████╗ ",
+                @"                ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ "
+
+            };
+
+            string[] promoted = new string[]
+            {
+                @"                                                                              ",
+                @"      ██████╗ ██████╗  ██████╗ ███╗   ███╗ ██████╗ ████████╗███████╗██████╗   ",
+                @"      ██╔══██╗██╔══██╗██╔═══██╗████╗ ████║██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗  ",
+                @"      ██████╔╝██████╔╝██║   ██║██╔████╔██║██║   ██║   ██║   █████╗  ██║  ██║  ",
+                @"      ██╔═══╝ ██╔══██╗██║   ██║██║╚██╔╝██║██║   ██║   ██║   ██╔══╝  ██║  ██║  ",
+                @"      ██║     ██║  ██║╚██████╔╝██║ ╚═╝ ██║╚██████╔╝   ██║   ███████╗██████╔╝  ",
+                @"      ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝    ╚═╝   ╚══════╝╚═════╝   "
+            };
+
+
+            foreach (var item in you)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadKey();
 
-            Console.WriteLine("are");
+            foreach (var x in are)
+            {
+                Console.WriteLine(x);
+            }
+
             Console.ReadKey();
 
-            Console.WriteLine("promoted");
-            Console.ReadKey();
+            foreach (var y in promoted)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(y);
+                Thread.Sleep(100);
+                Console.ResetColor();
+            }
 
-            Console.WriteLine("Hurray!!!");
-            Console.ReadKey();
+
         }
 
         static Random morning = new Random(); // Creates random things (check WakeUo() for example)
@@ -363,7 +458,7 @@ namespace VHS
                     }
                     else if (number == 1)
                     {
-                        Console.WriteLine("Work work wok +1 in boss like and -2 in energy"); vhsperson.BossLikes += 1; vhsperson.Energi -= 2; timelocal++; number = 0;
+                        Console.WriteLine("Work work wok +1 in boss like and -2 in energy, -1 health"); vhsperson.BossLikes += 1; vhsperson.Energi -= 2; vhsperson.Health -= 1; timelocal++; number = 0;
                     }
                     else if (number == 2)
                     {
@@ -382,13 +477,101 @@ namespace VHS
                 }               
 
                 }
+
+            }
+            if (vhsperson.Health < 0)
+            {
+                HealthToLow(vhsperson);
             }
             Console.ReadKey();
         }
-               
+
+        private static void HealthToLow(VHSPERSON vhsperson)
+        {
+            Console.WriteLine($"Your health it to low.. ({vhsperson.Health}) and you need to go to the hospital");
+            Console.ReadKey();
+            Console.WriteLine("The doctor gives you a 30 % chance");
+            Console.ReadKey();
+            Console.WriteLine("Roll the dice, if you get 1 or 2 you die, and if you get 3,4,5 or 6 you live");
+            Console.WriteLine("Press enter to roll the dice");
+            Console.ReadKey();
+            int n = 0;
+            n = morning.Next(6);
+            if (n <= 2)
+            {
+                Console.WriteLine($"You rolled {n}...");
+                Console.ReadKey();
+                Dead();
+            }
+            else
+            {
+                Console.WriteLine($"You rolled {n}, yaay! Going back to work!");
+                vhsperson.Health = 10;
+                Console.WriteLine($"Health is back to {vhsperson.Health}");
+            }
+        }
+
+        private static void Dead()
+        {
+            Console.CursorVisible = false;
+            for (int i = 0; i < 5; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("                   ■ ■ ■ ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+                Console.WriteLine("             ■      R.I.P.     ■");
+                Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■ ■ ■ ■      ");
+                Console.WriteLine("          Try not to work so much!  ");
+                Console.ResetColor();
+
+                Thread.Sleep(1000);
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("                   ■ ■ ■ ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+                Console.WriteLine("             ■      R.I.P.     ■");
+                Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■     ■      ");
+                Console.WriteLine("                   ■ ■ ■ ■      ");
+                Console.WriteLine("          Try not to work so much!  ");
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("                   ■ ■ ■ ■      ");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+            Console.WriteLine("             ■      R.I.P.     ■");
+            Console.WriteLine("             ■ ■ ■ ■     ■ ■ ■ ■");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("                   ■     ■      ");
+            Console.WriteLine("                   ■ ■ ■ ■      ");
+            Console.WriteLine("          Try not to work so much!  ");
+            Console.ResetColor();
+            Console.ReadKey();
+            Environment.Exit(1);
+
+        }
 
         private static decimal ChoicesAfter12(VHSPERSON vhsperson, int coffeCout)
         {
+          
             decimal timelocal = 12;
             while (timelocal < 17)
             {
@@ -401,16 +584,17 @@ namespace VHS
                     Console.WriteLine("3: Chat with your colleagues (+ health, - energy)");
                     Console.WriteLine("4: Play pingis (+ health, - energy)");
                     int choice = int.Parse(Console.ReadLine());
-                    if (choice == 2) coffeCout++;
                     PrintChoices(vhsperson, choice);
                     Console.ReadKey();
                     timelocal++; 
+               
             }
             return timelocal;
         }
 
         private static decimal ChoicesBefore12(VHSPERSON vhsperson, int coffeCout)
         {
+            coffeCout = 0;
             decimal timeLocal = time;
             while (timeLocal < 12)
             {
@@ -425,7 +609,10 @@ namespace VHS
                       Console.WriteLine("4: Play pingis (+ health, - energy)");
                       Console.WriteLine("5: Drink coffe (+ energy).. but dont drink to much!");
                       int choice = int.Parse(Console.ReadLine());
-                      if (choice == 2) coffeCout++;                                  
+                    if (choice == 2)
+                    {
+                        coffeCout++;
+                    }
                       PrintChoices(vhsperson, choice);
                       Console.ReadKey();
                 }
@@ -445,6 +632,8 @@ namespace VHS
 
         private static void PrintChoices(VHSPERSON vhsperson, int choice)
         {
+            int n = 0;
+            n = morning.Next(20);
             switch (choice)
             {
                 case 5: Console.WriteLine("You drink coffe, +1 energy"); vhsperson.Energi += 1; break;
@@ -468,6 +657,149 @@ namespace VHS
                 case 3: Console.WriteLine("You chatted with your colleagues, -1 energy and +1 health "); vhsperson.Energi -= 1; vhsperson.Health += 1; break;
                 case 4: Console.WriteLine("You played pingis and gaines 1 health and lost 1 energy"); vhsperson.Energi -= 1; vhsperson.Health += 1; break;
                 default: Console.WriteLine("Error in PrintChoices"); break;
+            }
+            if (n == 1)
+            {
+                Console.Clear();
+                Console.WriteLine($"<BOSS>: {vhsperson.Name}, WAKE UP!!!");
+                Console.WriteLine("You fell aslep during your task");
+                Console.WriteLine("-2 boss like.. think you need to work late a few days to fix this");
+                vhsperson.BossLikes -= 2;
+            }
+            if (n == 2)
+            {
+                Random random = new Random();
+
+                int randomNumber = random.Next(1, 10);
+                int guess = 0;
+                int count = 0;
+                Console.Clear();
+                Console.WriteLine($"<BOSS> {vhsperson.Name}, i'm thinking of a number between 1-10, can you guess which one?");
+                Console.WriteLine("Enter a number");
+
+                while (guess != randomNumber)
+                {
+                    guess = int.Parse(Console.ReadLine());
+
+                    if (guess < randomNumber)
+                    {
+                        Console.WriteLine("Nope! The number is higher than " + guess + ". Try again.");
+                        count++;
+                    }
+                    else if (guess > randomNumber)
+                    {
+                        Console.WriteLine("Wrong, the number is lower than " + guess + ". Try again.");
+                        count++;
+                    }
+                }
+                count++;
+                Console.WriteLine("Correct, the number was " + randomNumber + ".");
+                if (count <= 3)
+                {
+                    Console.WriteLine("You gain 5 rubies");
+                    vhsperson.Money += 5;
+                }
+                else if (count > 3 && count <= 5)
+                {
+                    Console.WriteLine("Not to bad, you gain 1 rubie");
+                    vhsperson.Money += 1;
+                }
+                else
+                {
+                    Console.WriteLine(".. that was bad.. to many guesses");
+                }
+                Console.WriteLine($"You guessed: {count} times");
+
+            }
+            if (n == 3)
+            {
+                int countLocal = 0;
+                Console.Clear();
+                Console.WriteLine($"<Läraren Oskar>: {vhsperson.Name}, lets play a game");
+                Console.ReadKey();
+                while (countLocal == 0)
+                {
+                Console.Write("Solve this equation: '(2 + 4) * (2 - 4)', enter a number and press enter:");
+                string solveInput = Console.ReadLine();
+                    if (solveInput == "-12")
+                    {
+                        Console.WriteLine("Correct! You gain 1 rubies");
+                        vhsperson.Money += 1;
+                        countLocal = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong! The correct awnser is: -12, you loose 1 rubie");
+                        vhsperson.Money -= 1;
+                        countLocal = 1;
+                    }
+
+                }
+
+            }
+            if (n == 4)
+            {
+                Console.Clear();
+                Console.WriteLine("A masked armed robber enters the store, and yells 'Give me all your money'");
+                Console.WriteLine("What do you do?");
+                Console.ReadKey();
+                Console.WriteLine("1: Hide under the counter");
+                Console.WriteLine("2: Fight the robber");
+                Console.WriteLine("3: Help the robber");
+                Console.WriteLine("Enter a number and press enter");
+                int input = 0;
+                string input2 = Console.ReadLine();
+                int.TryParse(input2, out input);
+                if (input == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("The robber takes all the money...");
+                    Console.WriteLine("The boss yells at you, - boss point");
+                    vhsperson.BossLikes -= 1;
+                    Console.ReadKey();
+                }
+                else if (input == 2)
+                {
+                    Random random = new Random();
+                    Console.WriteLine("You take a bunch of VHS-tapes and throw them at the robber");
+                    Console.ReadKey();
+                    int randomNumber = random.Next(1, 2);
+                    if (randomNumber == 1)
+                    {
+                        Console.WriteLine("The robber dodges and beats you");
+                        Console.WriteLine("- energy, - health, + boss point");
+                        vhsperson.Energi -= 1; vhsperson.BossLikes += 1; vhsperson.Health -= 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The robber gets hit and runs away");
+                        Console.WriteLine("+ boss point, + energy");
+                        vhsperson.BossLikes += 1; vhsperson.Energi += 1;
+                    }
+                    
+                }
+                else
+                {
+                    Random random = new Random();
+                    Console.WriteLine("You help the robber and take a few VHS-tapes for yourself");
+                    Console.ReadKey();
+                    int randomNumber = random.Next(1, 2);
+                    if (randomNumber == 1)
+                    {
+                        Console.WriteLine("The boss calls the cop, and you are sent to jail");
+                        Console.ReadKey();
+                        Fired(vhsperson);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Yaaaay, you got the new Back to the Future 2 movie");
+                        Console.WriteLine("+ money, + health, - energy");
+                        vhsperson.Money += 1; vhsperson.Health += 1; vhsperson.Energi -= 1;
+                    }
+
+                }
+                Console.ReadKey();
+
             }
         }
 
