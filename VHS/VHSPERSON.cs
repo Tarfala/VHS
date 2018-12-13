@@ -16,13 +16,14 @@ namespace VHS
         public int VHSRepaired { get; set; }
         public int ToolLevel { get; set; }
         public int CustomerHappines { get; set; }
+        public int LunchLada { get; internal set; }
 
         internal void AskForName()
         {
-            Console.WriteLine("What is your name");
+            Console.WriteLine("What is your name?");
             Name = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine($"Hi {Name}, lets play a game");
+            Console.WriteLine($"Hi {Name}, lets play a game!");
             Energi = 10;
             Money = 5;
             Health = 10;
@@ -30,6 +31,7 @@ namespace VHS
             BossLikes = 0;
             VHSRepaired = 0;
             ToolLevel = 0;
+            LunchLada = 0;
             CustomerHappines = 0;
             Console.ReadKey();
             Console.Clear();
