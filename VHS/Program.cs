@@ -1,34 +1,264 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 
 namespace VHS
 {
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
             var vhsperson = new VHSPERSON(); // Creates the class
+            string something = File.ReadAllText(@"C:\Users\Risberg\Desktop\Projekt Week 3\ScoreBoard\ScoreBoard.txt");
+            int value = IntroPage();
+          
+            if (value == 2)
+            {
+                PrintScoreBoard(something);
+
+            }
+            loadingTheMainGame();
+
+
+
+            Console.Clear();
             vhsperson.AskForName(); // Ask user for the name 
+
             
             Sunday(vhsperson); // Ask user for 3 things to do on sunday, effects the scores
             Console.ResetColor();
             StartGame(vhsperson); // Game start for real now
-            EndGame(vhsperson);
+            EndGame(vhsperson, something);
         }
 
-        private static void EndGame(VHSPERSON vhsperson)
+        private static void loadingTheMainGame()
+        {
+            Console.Clear();
+            Console.CursorVisible = false;
+            Console.WriteLine("Loading game... [           ]");
+            for (int i = 16; i <= 26; i++)
+            {
+                Console.SetCursorPosition(i + 1, 0);
+                Console.Write("*");
+                Thread.Sleep(200);
+            }
+
+            Console.ReadKey();
+
+        }
+
+        private static int IntroPage()
+        {
+            displayIntro(20, 0);
+            int value = displayChoices(45, 15);
+           
+            return value;
+
+        }
+
+        private static int displayChoices(int left, int top)
+        {
+            Console.CursorVisible = true;
+            int number = 0;
+            int value = 0;
+            Console.SetCursorPosition(left, top);
+            Console.WriteLine("1. Start new game");
+            Console.SetCursorPosition(left, top + 1);
+            Console.WriteLine("2. Highscore");
+            Console.SetCursorPosition(left, top + 2);
+            Console.Write("Choose your option: ");
+            string choice = Console.ReadLine();
+            int.TryParse(choice, out number);
+
+            if (number == 1)
+            {
+                value = 1;
+            }
+            else if (number == 2)
+            {
+                value = 2;
+            }
+            else if (number != 1 || number != 2)
+            {
+                Console.SetCursorPosition(33, top + 5);
+                Console.WriteLine("You can only choose between the number 1 and 2.");
+                Thread.Sleep(1000);
+                Console.SetCursorPosition(left + 19, top + 2);
+                Console.Write("                   ");
+                Console.SetCursorPosition(left, top + 3);
+                displayChoices(left, top);
+            }
+            return value;
+        }
+
+        private static void displayIntro(int left, int top)
+        {
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(left, top);
+
+            string[] ram = new string[]
+                {@"======================================================================"};
+
+            string[] titel = new string[]
+                {@"                   __      ___    _  _____                           _                     ",
+                 @"                   \ \    / / |  | |/ ____|                         | |                    ",
+                 @"                    \ \  / /| |__| | (___ ______ _ __ ___   __ _  __| |_ __   ___  ___ ___ ",
+                 @"                     \ \/ / |  __  |\___ \______| '_ ` _ \ / _` |/ _` | '_ \ / _ \/ __/ __|",
+                 @"                      \  /  | |  | |____) |     | | | | | | (_| | (_| | | | |  __/\__ \__ \",
+                 @"                       \/   |_|  |_|_____/      |_| |_| |_|\__,_|\__,_|_| |_|\___||___/___/" };
+
+
+            var line1 = new List<char>() { 'Y', 'o', 'u', ' ', 'a', 'r', 'e', ' ', 't', 'h', 'e', ' ', 'V', 'H', 'S', '-', 'g', 'u', 'y', '!' };
+            var line2 = new List<char>() { 'Y', 'o', 'u', ' ', 'n','e','e','d',' ','t','o',' ','g','e','t',' ',
+                'p','r','o','m','o','t','e','d',' ','t','o',' ','a','f','f','o','r','d', ' ','y','o','u','r',' ','e','x','c','l','u','s','i','v','e',
+                ' ','c','o','l','l','e','c','t','i','o','n',' ','o','f', ' ','m','a','p','l','e',' ','s','y','r','u','p','.' };
+
+            var line3 = new List<char>() {'D','o',' ','y','o','u','r',' ','b','e','s','t',',',' ','w','o','r','k',' ','h','a','r','d',',',' ','t','a','k','e',
+            ' ','c','a','r','e',' ','o','f',' ','c','u','s','t','o','m','e','r','s',' ','a','n','d',' ','f','i','n','d', ' ', 't', 'h', 'e', ' ', 'm', 'i', 'n', 'i', '-', 'g', 'a', 'm', 'e', 's', '.', '.', '.' };
+
+            var line4 = new List<char>() { 'a', 'n', 'd', ' ', 't', 'h', 'e', 'n', ' ', 'm', 'a', 'y', 'b', 'e', ',', ' ', 'j', 'u', 's', 't', ' ',
+                'm', 'a', 'y', 'b', 'e',',',' ','y','o','u',' ','w','i','l','l',' ','a','c','h','i','e','v','e',' ','y','o','u','r',' ', 'g','o','a','l','.' };
+
+            var line5 = new List<char>() { 'B','u','t',' ','r','e','m','e','m','b','e','r',',',' ','y','o','u',' ','o','n','l','y',' ','h','a','v','e',
+            ' ','f','i','v','e',' ','d','a','y','s',' ','a','n','d',' ','t','h','e',' ','c','l','o','c','k',' ','i','s',' ','t','i','c','k','i','n','g','.'};
+
+            //foreach (var item in ram)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //foreach (string text in titel)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Green;
+            //    Console.WriteLine(text);
+            //    Thread.Sleep(200);
+            //    Console.ResetColor();
+            //}
+
+            //foreach (var item in ram)
+            //{
+            //    Console.SetCursorPosition(left, 7);
+            //    Console.WriteLine(item);
+            //}
+
+            //Console.SetCursorPosition(45, 9);
+            //foreach (var item in line1)
+            //{
+            //    Console.Write(item);
+            //    Thread.Sleep(70);
+            //}
+
+            //Console.SetCursorPosition(left, 10);
+            //foreach (var item in line2)
+            //{
+            //    Console.Write(item);
+            //    Thread.Sleep(70);
+            //}
+
+            //Console.SetCursorPosition(left, 11);
+            //foreach (var item in line3)
+            //{
+            //    Console.Write(item);
+            //    Thread.Sleep(70);
+            //}
+
+            //Console.SetCursorPosition(left, 12);
+            //foreach (var item in line4)
+            //{
+            //    Console.Write(item);
+            //    Thread.Sleep(70);
+            //}
+
+            //Console.SetCursorPosition(left, 13);
+            //foreach (var item in line5)
+            //{
+            //    Console.Write(item);
+            //    Thread.Sleep(70);
+            //}
+            //Console.WriteLine();
+            //Thread.Sleep(3000);
+        }
+
+        private static void PrintScoreBoard(string something)
+        {
+            Console.Clear();
+            Console.WriteLine(something);
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        private static void EndGame(VHSPERSON vhsperson, string something)
         {
             Console.WriteLine("Its now friday evening.. and the boss calls you");
             Console.ReadKey();
             Console.WriteLine("To get a promotion you'll need: ");
-            Console.WriteLine("Health: X");
-            Console.WriteLine("Skill: X");
-            Console.WriteLine("BossLikes: X");
-            Console.WriteLine("VHSRepaired: X");
-            Console.WriteLine("CustomerHappines");
+            Console.WriteLine("Health > 2"); 
+            Console.WriteLine("Skill > 3");
+            Console.WriteLine("BossLikes > 4");
+            Console.WriteLine("VHSRepaired > 10");
+            Console.WriteLine("CustomerHappines > 20");
             Console.ReadKey();
-            Console.Clear();
+            Console.WriteLine();
             Console.WriteLine("Your score is:" );
             CurrentScore(vhsperson);
+            PromotedOrnot(vhsperson);
+            int scoreBoard = vhsperson.BossLikes + vhsperson.CustomerHappines + vhsperson.Energi + vhsperson.Health + vhsperson.Money + vhsperson.Skill + vhsperson.VHSRepaired;
+            Console.WriteLine($"Total score: {scoreBoard}");
+            using (StreamWriter writer = new StreamWriter(@"C:\Users\Risberg\Desktop\Projekt Week 3\ScoreBoard\ScoreBoard.txt"))
+            {
+                writer.WriteLine(something + vhsperson.Name + " " + scoreBoard);
+            }
+        }
+
+        private static void PromotedOrnot(VHSPERSON vhsperson)
+        {
+            if (vhsperson.Health > 2 && vhsperson.Skill > 2 && vhsperson.BossLikes > 4 && vhsperson.VHSRepaired > 10 && vhsperson.CustomerHappines > 20)
+            {
+                Promoted(vhsperson);
+            }
+            else
+            {
+                Fired(vhsperson);
+            }
+
+        }
+
+        private static void Fired(VHSPERSON vhsperson)
+        {
+            Console.Clear();
+            Console.Write("<BOSS>: ");
+            Console.WriteLine(vhsperson.Name + "!!!!!");
+            Console.WriteLine("You");
+            Console.ReadKey();
+
+            Console.WriteLine("are");
+            Console.ReadKey();
+
+            Console.WriteLine("FIRED!!!!!");
+            Console.ReadKey();
+
+            
+            Console.ReadKey();
+        }
+
+        private static void Promoted(VHSPERSON vhsperson)
+        {
+            Console.Clear();
+            Console.Write("<BOSS>: ");
+            Console.WriteLine(vhsperson.Name + "!!!!!");
+            Console.WriteLine(vhsperson.Name);
+            Console.WriteLine("You");
+            Console.ReadKey();
+
+            Console.WriteLine("are");
+            Console.ReadKey();
+
+            Console.WriteLine("promoted");
+            Console.ReadKey();
+
+            Console.WriteLine("Hurray!!!");
+            Console.ReadKey();
         }
 
         static Random morning = new Random(); // Creates random things (check WakeUo() for example)
@@ -53,6 +283,8 @@ namespace VHS
                     Console.WriteLine("Not sure how that's possible.. ");
                     Console.ReadKey();
                     Console.WriteLine("You faint and gets -5 in health");
+                    Console.ReadKey();
+
                     vhsperson.Health -= 5;
                     vhsperson.Energi = 10;
                 }
@@ -114,8 +346,7 @@ namespace VHS
             decimal timelocal = 17;
             while (timelocal < 20)
             {
-                number = 0;
-                while (number == 0)
+                while (number == 0 || timelocal < 20)
                 {
                    
                     Console.Clear();               
@@ -124,24 +355,30 @@ namespace VHS
                     Console.WriteLine("1: Help a customer, + boss like, - energy)");
                     Console.WriteLine("2: Go home");                    
                     string choice = Console.ReadLine();
+                    
                     int.TryParse(choice, out number);
-
-                    if (number == 1) Console.WriteLine("Work work wok +1 in boss like and -2 in energy"); vhsperson.BossLikes += 1; vhsperson.Energi -= 2; timelocal++;
-
-                    if (number == 2)
-                    {
-                        Console.WriteLine("Then lets go home");
-                        timelocal++;
-                    }
-                    else if (number == 0)
+                    if (number == 0)
                     {
                         Console.WriteLine("You only have 2 options... 1 or 2");
                     }
+                    else if (number == 1)
+                    {
+                        Console.WriteLine("Work work wok +1 in boss like and -2 in energy"); vhsperson.BossLikes += 1; vhsperson.Energi -= 2; timelocal++; number = 0;
+                    }
+                    else if (number == 2)
+                    {
+                        Console.WriteLine("Then lets go home");
+                        Console.ReadKey();
+                        timelocal = 20;
+                        break;
+                    }
+                  
                 Console.ReadKey();
                 if (timelocal == 20)
                 {
                     Console.WriteLine($"it's {timelocal} now!! Go HOME! -3 in energy");
                     vhsperson.Energi -= 3;
+                    break;
                 }               
 
                 }
@@ -268,7 +505,7 @@ namespace VHS
                 string busTaxi = Console.ReadLine();
                 if (busTaxi.ToUpper() == "TAXI")
                 {
-                    if (vhsperson.Money <= 0)
+                    if (vhsperson.Money <= 1)
                     {
                         Console.WriteLine($"<Taxi Driver>: {vhsperson.Name} you dont have enough money at the end of the trip!!!");
                         Console.WriteLine("The driver beats you, - 5 health");
